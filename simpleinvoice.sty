@@ -1,6 +1,9 @@
+% Package for creating invoices.
+% Implemented by Mathias Lohne (mathialo@ifi.uio.no).
+% Version 2017-11-01.
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{simpleinvoice}
-
 
 % Language options
 \DeclareOption{american}{\def \INV@lang  {eng}}
@@ -78,65 +81,65 @@
 \newcommand{\linesep}{\vspace{6pt} {\color{linecolor}\hrule} \vspace{6pt}}
 
 % Standard values
-\def \@innerinvnum {{\color{red} No number}}
-\def \@innerinvtitle {\csname INV@text@invoice@\INV@lang\endcsname}
-\def \@innerinvdate {\today}
-\def \@innerinvdeadline {\DayAfter[14]}
-\def \@innerinvname {{\color{red} Your name}}
-\def \@innerinvaddr {{\color{red} Address line 1 \\ Address line 2}}
-\def \@innerinvaddroneline {{\color{red} Address line 1 / Address line 2}}
-\def \@innerinvourref {{\color{red} Name}}
-\def \@innerinvyourref {{\color{red} Name}}
-\def \@innerinvtoname {{\color{red} Company}}
-\def \@innerinvtoaddr {{\color{red} Address line 1 \\ Address line 2}}
-\def \@innerinvsubtotal {{\color{red} Subtotal}}
-\def \@innerinvvat {{\color{red} VAT}}
-\def \@innerinvtotal {{\color{red} Total}}
-\def \@innerinvaccountnum {{\color{red} Bank account}}
+\def \INV@content@num {{\color{red} No number}}
+\def \INV@content@title {\csname INV@text@invoice@\INV@lang\endcsname}
+\def \INV@content@date {\today}
+\def \INV@content@deadline {\DayAfter[14]}
+\def \INV@content@name {{\color{red} Your name}}
+\def \INV@content@addr {{\color{red} Address line 1 \\ Address line 2}}
+\def \INV@content@addroneline {{\color{red} Address line 1 / Address line 2}}
+\def \INV@content@ourref {{\color{red} Name}}
+\def \INV@content@yourref {{\color{red} Name}}
+\def \INV@content@toname {{\color{red} Company}}
+\def \INV@content@toaddr {{\color{red} Address line 1 \\ Address line 2}}
+\def \INV@content@subtotal {{\color{red} Subtotal}}
+\def \INV@content@vat {{\color{red} VAT}}
+\def \INV@content@total {{\color{red} Total}}
+\def \INV@content@accountnum {{\color{red} Bank account}}
 
 % Functions for overriding standard values
-\newcommand{\setinvoicetitle}[1]{\def \@innerinvtitle {#1}}
-\newcommand{\setinvoicenumber}[1]{\def \@innerinvnum {#1}}
-\newcommand{\setrecievername}[1]{\def \@innerinvtoname {#1}}
-\newcommand{\setrecieveraddress}[1]{\def \@innerinvtoaddr {#1}}
-\newcommand{\setname}[1]{\def \@innerinvname {#1}}
-\newcommand{\setaddress}[2]{\def \@innerinvaddr {#1}
-	\def \@innerinvaddroneline {#2}
+\newcommand{\setinvoicetitle}[1]{\def \INV@content@title {#1}}
+\newcommand{\setinvoicenumber}[1]{\def \INV@content@num {#1}}
+\newcommand{\setrecievername}[1]{\def \INV@content@toname {#1}}
+\newcommand{\setrecieveraddress}[1]{\def \INV@content@toaddr {#1}}
+\newcommand{\setname}[1]{\def \INV@content@name {#1}}
+\newcommand{\setaddress}[2]{\def \INV@content@addr {#1}
+	\def \INV@content@addroneline {#2}
 }
-\newcommand{\setphonenum}[1]{\def \@innerinvphonenum {#1}}
-\newcommand{\setemail}[1]{\def \@innerinvemail {\href{mailto:#1}{#1}}}
-\newcommand{\setyourref}[1]{\def \@innerinvyourref {#1}}
-\newcommand{\setourref}[1]{\def \@innerinvourref {#1}}
-\newcommand{\setinvoicedate}[1]{\def \@innerinvdate {#1}}
-\newcommand{\setdeadline}[1]{\def \@innerinvdeadline {\DayAfter[#1]}}
-\newcommand{\additem}[4]{\ifdef{\@innerinvlist}{\appto \@innerinvlist {\\ #1 & #2 & #3 & #4}}{\def \@innerinvlist {#1 & #2 & #3 & #4}}}
-\newcommand{\setsubtotal}[1]{\def \@innerinvsubtotal {#1}}
-\newcommand{\setvat}[1]{\def \@innerinvvat {#1}}
-\newcommand{\settotal}[1]{\def \@innerinvtotal {#1}}
-\newcommand{\setaccountnum}[1]{\def \@innerinvaccountnum {#1}}
+\newcommand{\setphonenum}[1]{\def \INV@content@phonenum {#1}}
+\newcommand{\setemail}[1]{\def \INV@content@email {\href{mailto:#1}{#1}}}
+\newcommand{\setyourref}[1]{\def \INV@content@yourref {#1}}
+\newcommand{\setourref}[1]{\def \INV@content@ourref {#1}}
+\newcommand{\setinvoicedate}[1]{\def \INV@content@date {#1}}
+\newcommand{\setdeadline}[1]{\def \INV@content@deadline {\DayAfter[#1]}}
+\newcommand{\additem}[4]{\ifdef{\INV@content@list}{\appto \INV@content@list {\\ #1 & #2 & #3 & #4}}{\def \INV@content@list {#1 & #2 & #3 & #4}}}
+\newcommand{\setsubtotal}[1]{\def \INV@content@subtotal {#1}}
+\newcommand{\setvat}[1]{\def \INV@content@vat {#1}}
+\newcommand{\settotal}[1]{\def \INV@content@total {#1}}
+\newcommand{\setaccountnum}[1]{\def \INV@content@accountnum {#1}}
 
 % Make invoice function
 \def \makeinvoice {
 	\begin{minipage}[b]{0.5\textwidth}
-		{\large \textbf{\@innerinvtoname}} \\
-		\@innerinvtoaddr
+		{\large \textbf{\INV@content@toname}} \\
+		\INV@content@toaddr
 	\end{minipage}
 	\begin{minipage}[b]{0.5\textwidth}
-		\hfill {\Huge \@innerinvtitle}
+		\hfill {\Huge \INV@content@title}
 		
 		\linesep
 		
-		{\large \textbf{\@innerinvname}} \\
-		\@innerinvaddr \ifdef{\@innerinvphonenum}{\\ \@innerinvphonenum}{} \ifdef{\@innerinvemail}{\\ \@innerinvemail}{}
+		{\large \textbf{\INV@content@name}} \\
+		\INV@content@addr \ifdef{\INV@content@phonenum}{\\ \INV@content@phonenum}{} \ifdef{\INV@content@email}{\\ \INV@content@email}{}
 		
 		\linesep
 		
 		{ \footnotesize
-			\csname INV@text@ourref@\INV@lang\endcsname: \@innerinvourref \\
-			\csname INV@text@yourref@\INV@lang\endcsname: \@innerinvyourref \\
-			\csname INV@text@invnum@\INV@lang\endcsname: \@innerinvnum \\
-			\csname INV@text@invdate@\INV@lang\endcsname: \@innerinvdate \\
-			\csname INV@text@deadline@\INV@lang\endcsname: \@innerinvdeadline
+			\csname INV@text@ourref@\INV@lang\endcsname: \INV@content@ourref \\
+			\csname INV@text@yourref@\INV@lang\endcsname: \INV@content@yourref \\
+			\csname INV@text@invnum@\INV@lang\endcsname: \INV@content@num \\
+			\csname INV@text@invdate@\INV@lang\endcsname: \INV@content@date \\
+			\csname INV@text@deadline@\INV@lang\endcsname: \INV@content@deadline
 		}
 	\end{minipage}
 	
@@ -145,16 +148,16 @@
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabularx}{\textwidth}{X c c r}
 		\textbf{\csname INV@text@description@\INV@lang\endcsname} & \textbf{\csname INV@text@itemprice@\INV@lang\endcsname} & \hspace{10pt}\textbf{\csname INV@text@vat@\INV@lang\endcsname}\hspace{10pt} & \textbf{\csname INV@text@itemtotal@\INV@lang\endcsname} \\ \arrayrulecolor{linecolor}\hline
-		\ifdef{\@innerinvlist}{\@innerinvlist}{{\color{red} No Items yet} & & &}
+		\ifdef{\INV@content@list}{\INV@content@list}{{\color{red} No Items yet} & & &}
 	\end{tabularx}
 	
 	\vspace{2cm}
 	\hfill
 	\renewcommand{\arraystretch}{1}
 	\begin{tabular}{r r}
-		\csname INV@text@subtotal@\INV@lang\endcsname: \hspace{10pt} & \@innerinvsubtotal \\
-		\csname INV@text@vat@\INV@lang\endcsname: \hspace{10pt} & \@innerinvvat \\ 
-		{\Large \csname INV@text@total@\INV@lang\endcsname: \hspace{10pt}} & {\Large \@innerinvtotal}
+		\csname INV@text@subtotal@\INV@lang\endcsname: \hspace{10pt} & \INV@content@subtotal \\
+		\csname INV@text@vat@\INV@lang\endcsname: \hspace{10pt} & \INV@content@vat \\ 
+		{\Large \csname INV@text@total@\INV@lang\endcsname: \hspace{10pt}} & {\Large \INV@content@total}
 	\end{tabular}
 	
 	\vfill
@@ -163,13 +166,13 @@
 	{\huge \csname INV@text@paymentinfo@\INV@lang\endcsname}
 	\linesep
 	\begin{tabularx}{\textwidth}{X r}
-		\csname INV@text@invnum@\INV@lang\endcsname: & \@innerinvnum  \\
-		\csname INV@text@totallong@\INV@lang\endcsname: & \@innerinvtotal \\
-		\csname INV@text@accountnum@\INV@lang\endcsname: & \@innerinvaccountnum 
+		\csname INV@text@invnum@\INV@lang\endcsname: & \INV@content@num  \\
+		\csname INV@text@totallong@\INV@lang\endcsname: & \INV@content@total \\
+		\csname INV@text@accountnum@\INV@lang\endcsname: & \INV@content@accountnum 
 	\end{tabularx}
 	
 	\vspace{2 cm}
 	\linesep
-	{\footnotesize \color{gray} \@innerinvname \hfill \@innerinvaddroneline \ifdef{\@innerinvphonenum}{\hfill \@innerinvphonenum}{} \ifdef{\@innerinvemail}{\hfill \@innerinvemail}{}}
+	{\footnotesize \color{gray} \INV@content@name \hfill \INV@content@addroneline \ifdef{\INV@content@phonenum}{\hfill \INV@content@phonenum}{} \ifdef{\INV@content@email}{\hfill \INV@content@email}{}}
 }
 
