@@ -88,8 +88,6 @@
 \def \INV@content@name {{\color{red} Your name}}
 \def \INV@content@addr {{\color{red} Address line 1 \\ Address line 2}}
 \def \INV@content@addroneline {{\color{red} Address line 1 / Address line 2}}
-\def \INV@content@ourref {{\color{red} Name}}
-\def \INV@content@yourref {{\color{red} Name}}
 \def \INV@content@toname {{\color{red} Company}}
 \def \INV@content@toaddr {{\color{red} Address line 1 \\ Address line 2}}
 \def \INV@content@subtotal {{\color{red} Subtotal}}
@@ -100,8 +98,8 @@
 % Functions for overriding standard values
 \newcommand{\setinvoicetitle}[1]{\def \INV@content@title {#1}}
 \newcommand{\setinvoicenumber}[1]{\def \INV@content@num {#1}}
-\newcommand{\setrecievername}[1]{\def \INV@content@toname {#1}}
-\newcommand{\setrecieveraddress}[1]{\def \INV@content@toaddr {#1}}
+\newcommand{\setreceivername}[1]{\def \INV@content@toname {#1}}
+\newcommand{\setreceiveraddress}[1]{\def \INV@content@toaddr {#1}}
 \newcommand{\setname}[1]{\def \INV@content@name {#1}}
 \newcommand{\setaddress}[2]{\def \INV@content@addr {#1}
 	\def \INV@content@addroneline {#2}
@@ -112,7 +110,7 @@
 \newcommand{\setourref}[1]{\def \INV@content@ourref {#1}}
 \newcommand{\setinvoicedate}[1]{\def \INV@content@date {#1}}
 \newcommand{\setdeadline}[1]{\def \INV@content@deadline {\DayAfter[#1]}}
-\newcommand{\additem}[4]{\ifdef{\INV@content@list}{\appto \INV@content@list {\\ #1 & #2 & #3 & #4}}{\def \INV@content@list {#1 & #2 & #3 & #4}}}
+\newcommand{\additem}[4]{\ifdef{\INV@content@list}{\appto \INV@content@list {\\ #1 & #2 & #3 \% & #4}}{\def \INV@content@list {#1 & #2 & #3 \% & #4}}}
 \newcommand{\setsubtotal}[1]{\def \INV@content@subtotal {#1}}
 \newcommand{\setvat}[1]{\def \INV@content@vat {#1}}
 \newcommand{\settotal}[1]{\def \INV@content@total {#1}}
@@ -135,8 +133,8 @@
 		\linesep
 		
 		{ \footnotesize
-			\csname INV@text@ourref@\INV@lang\endcsname: \INV@content@ourref \\
-			\csname INV@text@yourref@\INV@lang\endcsname: \INV@content@yourref \\
+			\ifdef{\INV@content@ourref}{\csname INV@text@ourref@\INV@lang\endcsname: \INV@content@ourref \\}{}
+			\ifdef{\INV@content@yourref}{\csname INV@text@yourref@\INV@lang\endcsname: \INV@content@yourref \\}{}
 			\csname INV@text@invnum@\INV@lang\endcsname: \INV@content@num \\
 			\csname INV@text@invdate@\INV@lang\endcsname: \INV@content@date \\
 			\csname INV@text@deadline@\INV@lang\endcsname: \INV@content@deadline
@@ -162,17 +160,17 @@
 	
 	\vfill
 	
-	{\color{gray} \itshape \csname INV@text@warning@\INV@lang\endcsname} \vspace{10pt} \\
-	{\huge \csname INV@text@paymentinfo@\INV@lang\endcsname}
-	\linesep
-	\begin{tabularx}{\textwidth}{X r}
-		\csname INV@text@invnum@\INV@lang\endcsname: & \INV@content@num  \\
-		\csname INV@text@totallong@\INV@lang\endcsname: & \INV@content@total \\
-		\csname INV@text@accountnum@\INV@lang\endcsname: & \INV@content@accountnum 
-	\end{tabularx}
-	
-	\vspace{2 cm}
-	\linesep
-	{\footnotesize \color{gray} \INV@content@name \hfill \INV@content@addroneline \ifdef{\INV@content@phonenum}{\hfill \INV@content@phonenum}{} \ifdef{\INV@content@email}{\hfill \INV@content@email}{}}
+	{{\color{gray} \itshape \csname INV@text@warning@\INV@lang\endcsname} \vspace{10pt} \\
+		{\huge \csname INV@text@paymentinfo@\INV@lang\endcsname}
+		\linesep
+		\begin{tabularx}{\textwidth}{X r}
+			\csname INV@text@invnum@\INV@lang\endcsname: & \INV@content@num  \\
+			\csname INV@text@totallong@\INV@lang\endcsname: & \INV@content@total \\
+			\csname INV@text@accountnum@\INV@lang\endcsname: & \INV@content@accountnum 
+		\end{tabularx}
+		
+		\vspace{1 cm}
+		\linesep
+		{\footnotesize \color{gray} \INV@content@name \hfill \INV@content@addroneline \ifdef{\INV@content@phonenum}{\hfill \INV@content@phonenum}{} \ifdef{\INV@content@email}{\hfill \INV@content@email}{}}}
 }
 
