@@ -5,6 +5,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{simpleinvoice}
 
+% Fall back to english if option parsing fails
+\def \INV@lang {eng}
+
 % Language options
 \DeclareOption{american}{\def \INV@lang  {eng}}
 \DeclareOption{english}{\def \INV@lang   {eng}}
