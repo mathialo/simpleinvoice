@@ -1,0 +1,33 @@
+\documentclass[english]{article}
+
+\usepackage{simpleinvoice}
+
+\begin{document}
+
+\setinvoicetitle{My Invoice}
+\setinvoicenumber{42}
+
+\setreceivername{Person McNameface}
+\setreceiveraddress{Roadname 35C \\ 52353 Cityville}
+
+\setname{My Name}
+\setaddress{Streetname 4644C \\ 0000 City}{Streetname 4644C / 0000 City}
+\setphonenumber{123 45 678}
+\setemail{mail@domain.com}
+
+\setyourref{Person McNameface}
+\setourref{My Name}
+
+\setinvoicedate{April 1, 2017}
+\setdeadline{21}     % extends deadline to April 22, 2017
+
+\additem{4 chairs}{100 USD}{0}{400 USD}
+\additem{1 table}{250 USD}{0}{250 USD}
+
+\setsubtotal{650 USD}
+\setvat{0 USD}
+\settotal{650 USD}
+\setaccountnumber{1234 56 78910}
+\makeinvoice
+
+\end{document}
