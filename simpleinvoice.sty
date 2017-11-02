@@ -13,7 +13,9 @@
 \DeclareOption{english}{\def \INV@lang   {eng}}
 \DeclareOption{UKenglish}{\def \INV@lang {eng}}
 \DeclareOption{USenglish}{\def \INV@lang {eng}}
-\DeclareOption{norsk}{\def \INV@lang     {bm}}
+\DeclareOption{norsk}{\def \INV@lang     {nobm}}
+\DeclareOption{norwegian}{\def \INV@lang {nobm}}
+\DeclareOption{bokmaal}{\def \INV@lang {nobm}}
 
 \ProcessOptions
 
@@ -35,22 +37,22 @@
 \def \INV@text@accountnum@eng {Account number}
 \def \INV@text@warning@eng {By paying after deadline, additional interest and fees may apply.}
 
-\def \INV@text@invoice@bm {Faktura}
-\def \INV@text@ourref@bm {Vår ref}
-\def \INV@text@yourref@bm {Deres ref}
-\def \INV@text@invnum@bm {Fakturanummer}
-\def \INV@text@invdate@bm {Fakturadato}
-\def \INV@text@deadline@bm {Forfallsdato}
-\def \INV@text@description@bm {Beskrivelse}
-\def \INV@text@itemprice@bm {Enhetspris}
-\def \INV@text@vat@bm {MVA}
-\def \INV@text@itemtotal@bm {Sum}
-\def \INV@text@subtotal@bm {MVA-grunnlag}
-\def \INV@text@total@bm {Å betale}
-\def \INV@text@paymentinfo@bm {Betalingsinformasjon}
-\def \INV@text@totallong@bm {Sum å betale}
-\def \INV@text@accountnum@bm {Kontonummer}
-\def \INV@text@warning@bm {Ved betaling etter forfall kan det påløpe renter og gebyr etter statens satser. Ved innsigelse vil kravet kunne bli sendt til forliksrådet, jf. tvistelovens § 5-2.}
+\def \INV@text@invoice@nobm {Faktura}
+\def \INV@text@ourref@nobm {Vår ref}
+\def \INV@text@yourref@nobm {Deres ref}
+\def \INV@text@invnum@nobm {Fakturanummer}
+\def \INV@text@invdate@nobm {Fakturadato}
+\def \INV@text@deadline@nobm {Forfallsdato}
+\def \INV@text@description@nobm {Beskrivelse}
+\def \INV@text@itemprice@nobm {Enhetspris}
+\def \INV@text@vat@nobm {MVA}
+\def \INV@text@itemtotal@nobm {Sum}
+\def \INV@text@subtotal@nobm {MVA-grunnlag}
+\def \INV@text@total@nobm {Å betale}
+\def \INV@text@paymentinfo@nobm {Betalingsinformasjon}
+\def \INV@text@totallong@nobm {Sum å betale}
+\def \INV@text@accountnum@nobm {Kontonummer}
+\def \INV@text@warning@nobm {Ved betaling etter forfall kan det påløpe renter og gebyr etter statens satser. Ved innsigelse vil kravet kunne bli sendt til forliksrådet, jf. tvistelovens § 5-2.}
 
 % Import neccesary libraries
 \RequirePackage{advdate}
