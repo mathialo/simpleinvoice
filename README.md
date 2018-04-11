@@ -7,7 +7,7 @@ The package is also on [CTAN](https://ctan.org/pkg/simpleinvoice).
 
 
 ### Examples
-[Example 1](https://github.com/mathialo/simpleinvoice/blob/master/examples/english.pdf) (plain LateX, using article class) and [example 2](https://github.com/mathialo/simpleinvoice/blob/master/examples/norwegian.pdf) (with more styling, using memoir class). See the "examples" folder in the repo for the source code for these examples.
+[Example 1](https://github.com/mathialo/simpleinvoice/blob/master/examples/english.pdf) (plain LaTeX, using article class) and [example 2](https://github.com/mathialo/simpleinvoice/blob/master/examples/norwegian.pdf) (with more styling, using memoir class). See the "examples" folder in the repo for the source code for these examples.
 
 
 ### Installation
