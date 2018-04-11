@@ -6,6 +6,10 @@ The simpleinvoice package lets you easily typeset professional-looking invoices,
 The package is also on [CTAN](https://ctan.org/pkg/simpleinvoice).
 
 
+### Examples
+[Example 1](https://github.com/mathialo/simpleinvoice/blob/master/examples/english.pdf) (plain LateX, using article class) and [example 2](https://github.com/mathialo/simpleinvoice/blob/master/examples/norwegian.pdf) (with more styling, using memoir class). See the "examples" folder in the repo for the source code for these examples.
+
+
 ### Installation
 The package has been a part of the TeXLive and MiKTeX distributions of LaTeX since mid-november 2017, so if you have a recent version of either of these distributions, simpleinvoice is allready installed on your system.
 
