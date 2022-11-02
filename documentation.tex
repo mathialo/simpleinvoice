@@ -128,13 +128,15 @@ Following are a list of all available commands, detailed description are availab
 
  
 \section{Loading package}
-The package is loaded with the \verb|\usepackage| command. If no language is specified in the options, the package defaults to the document langugae.
+The package is loaded with the \verb|\usepackage| command. If no language is specified in the options, the package defaults to the document language.
 \begin{lstlisting}
 \documentclass[english]{article}
 
 \usepackage{simpleinvoice}          % Falls back to english
 % OR
 \usepackage[norsk]{simpleinvoice}   % Specifies norwegian
+% OR
+\usepackage[german]{simpleinvoice}  % Specifies german
 
 \begin{document}
 
