@@ -73,6 +73,7 @@
 \def \INV@text@totallong {\csname INV@text@totallong@\INV@lang \endcsname}
 \def \INV@text@accountnum {\csname INV@text@accountnum@\INV@lang \endcsname}
 \def \INV@text@warning {\csname INV@text@warning@\INV@lang \endcsname}
+\def \INV@text@currancy {\ USD}
 
 % Import neccesary libraries
 \RequirePackage{advdate}
@@ -136,12 +137,13 @@
 \newcommand{\setourref}[1]{\def \INV@content@ourref {#1}}
 \newcommand{\setinvoicedate}[1]{\def \INV@content@date {#1}}
 \newcommand{\setdeadline}[1]{\def \INV@content@deadline {\DayAfter[#1]}}
-\newcommand{\additem}[4]{\ifdef{\INV@content@list}{\appto \INV@content@list {\\ #1 & #2 & #3 \% & #4}}{\def \INV@content@list {#1 & #2& #3 \% & #4}}}
+\newcommand{\additem}[4]{\ifdef{\INV@content@list}{\appto \INV@content@list {\\ #1 & #2 \INV@text@currancy & #3 \% & #4 \INV@text@currancy}}{\def \INV@content@list {#1 & #2 \INV@text@currancy& #3 \% & #4 \INV@text@currancy}}}
 \newcommand{\setsubtotal}[1]{\def \INV@content@subtotal {#1}}
 \newcommand{\setvat}[1]{\def \INV@content@vat {#1}}
 \newcommand{\settotal}[1]{\def \INV@content@total {#1}}
 \newcommand{\setaccountnumber}[1]{\def \INV@content@accountnum {#1}}
 \newcommand{\setsummary}[1]{\def \INV@content@summary {#1}}
+\newcommand{\setcurrancy}[1]{\def \INV@text@currancy {\ #1}}
 
 % Make invoice function
 \def \makeinvoice {
@@ -182,9 +184,9 @@
 	\hfill
 	\renewcommand{\arraystretch}{1}
 	\begin{tabular}{r r}
-		\csname INV@text@subtotal\endcsname: \hspace{10pt} & \INV@content@subtotal\\
-		\csname INV@text@vat\endcsname: \hspace{10pt} & \INV@content@vat\\
-		{\Large \csname INV@text@total\endcsname: \hspace{10pt}} & {\Large \INV@content@total}
+		\csname INV@text@subtotal\endcsname: \hspace{10pt} & \INV@content@subtotal \INV@text@currancy\\
+		\csname INV@text@vat\endcsname: \hspace{10pt} & \INV@content@vat \INV@text@currancy\\
+		{\Large \csname INV@text@total\endcsname: \hspace{10pt}} & {\Large \INV@content@total \INV@text@currancy}
 	\end{tabular}
 
 	\vfill
@@ -194,7 +196,7 @@
 		\linesep
 		\begin{tabularx}{\textwidth}{X r}
 			\csname INV@text@invnum\endcsname: & \INV@content@num  \\
-			\csname INV@text@totallong\endcsname: & \INV@content@total\\
+			\csname INV@text@totallong\endcsname: & \INV@content@total \INV@text@currancy\\
 			\csname INV@text@accountnum\endcsname: & \INV@content@accountnum
 		\end{tabularx}
 
