@@ -1,7 +1,7 @@
 % Package for creating invoices.
 % Implemented by Mathias Lohne (mathialo@ifi.uio.no).
 % (c) 2017 Mathias Lohne
-% Version 2017-11-03.
+% Version 2023-03-21.
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{simpleinvoice}[2017/11/03 package simpleinvoice]
@@ -181,8 +181,8 @@
 		\textbf{\csname INV@text@description\endcsname} & \textbf{\csname INV@text@itemprice\endcsname} & \hspace{10pt}\textbf{\csname INV@text@vat\endcsname}\hspace{10pt} & \textbf{\csname INV@text@itemtotal\endcsname} \\ \arrayrulecolor{linecolor}\hline
 		\ifdef{\INV@content@list}{\INV@content@list}{{\color{red} No Items yet} & & &}
 	\end{tabularx}
-	
-	\vspace{2cm}
+
+	\vspace{1.5cm}
 	\hfill
 	\renewcommand{\arraystretch}{1}
 	\begin{tabular}{r r}
