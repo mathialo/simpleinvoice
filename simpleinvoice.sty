@@ -119,6 +119,7 @@
 \def \INV@content@vat {{\color{red} VAT}}
 \def \INV@content@total {{\color{red} Total}}
 \def \INV@content@accountnum {{\color{red} Bank account}}
+\def \INV@content@summary {}
 
 % Functions for overriding standard values
 \newcommand{\setinvoicetitle}[1]{\def \INV@content@title {#1}}
@@ -140,6 +141,7 @@
 \newcommand{\setvat}[1]{\def \INV@content@vat {#1}}
 \newcommand{\settotal}[1]{\def \INV@content@total {#1}}
 \newcommand{\setaccountnumber}[1]{\def \INV@content@accountnum {#1}}
+\newcommand{\setsummary}[1]{\def \INV@content@summary {#1}}
 
 % Make invoice function
 \def \makeinvoice {
@@ -165,9 +167,11 @@
 			\csname INV@text@deadline\endcsname: \INV@content@deadline
 		}
 	\end{minipage}
-	
-	\vspace{3cm}
-	
+
+	\vspace{1.5cm}
+	\INV@content@summary
+	\vspace{1cm}
+
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabularx}{\textwidth}{X c c r}
 		\textbf{\csname INV@text@description\endcsname} & \textbf{\csname INV@text@itemprice\endcsname} & \hspace{10pt}\textbf{\csname INV@text@vat\endcsname}\hspace{10pt} & \textbf{\csname INV@text@itemtotal\endcsname} \\ \arrayrulecolor{linecolor}\hline
