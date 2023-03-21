@@ -59,8 +59,8 @@
 	framexleftmargin=2.4em,
 	showstringspaces=false,
 	language=TeX,
-	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\additem,\setsubtotal,\setvat,\settotal,\setaccountnumber},
-	commentstyle=\color{source_brown}\ttfamily, 
+	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\additem,\setsubtotal,\setvat,\settotal,\setaccountnumber, \setsummary, \setcurrancy, \setvattext, \setaccounttext},
+	commentstyle=\color{source_brown}\ttfamily,
 	keywordstyle=\color{source_blue}\ttfamily,
 	stringstyle=\color{source_orange},
 	literate={æ}{{\ae}}1{ø}{{\o}}1{å}{{\aa}}1
@@ -74,9 +74,9 @@
 
 
 % Allow longer words
-\tolerance = 5000 
-\hbadness = \tolerance 
-\pretolerance = 2000 
+\tolerance = 5000
+\hbadness = \tolerance
+\pretolerance = 2000
 
 
 \usepackage{pdfpages}
@@ -95,7 +95,7 @@
 
 \newpage
 \chapter{Package overview}
-The \texttt{simpleinvoice} package lets you easily typeset professional-looking invoices, and makes sure that all the legally required information is on the invoice. 
+The \texttt{simpleinvoice} package lets you easily typeset professional-looking invoices, and makes sure that all the legally required information is on the invoice.
 
 The package respects the global language set in the document, or can be loaded with another language specified. The languages currently supported are English and Norwegian (bokmål).
 
@@ -119,6 +119,10 @@ Following are a list of all available commands, detailed description are availab
 	\item \nameref{par:setvat}
 	\item \nameref{par:settotal}
 	\item \nameref{par:setaccountnumber}
+	\item \nameref{par:setsummary}
+	\item \nameref{par:setcurrancy}
+	\item \nameref{par:setvattext}
+	\item \nameref{par:setaccounttext}
 	\item \nameref{par:makeinvoice}
 \end{itemize}
 
@@ -126,7 +130,7 @@ Following are a list of all available commands, detailed description are availab
 \newpage
 \chapter{Detailed descriptions}
 
- 
+
 \section{Loading package}
 The package is loaded with the \verb|\usepackage| command. If no language is specified in the options, the package defaults to the document langugae.
 \begin{lstlisting}
@@ -146,7 +150,7 @@ The package is loaded with the \verb|\usepackage| command. If no language is spe
 
 \section{Description of all available commands}
 \label{sec:commanddetails}
-\subsection{{\textbackslash}setinvoicetitle} 
+\subsection{{\textbackslash}setinvoicetitle}
 Overrides the standard title of the invoice. Optional command. Takes one argument: the new title.
 Example:
 \begin{lstlisting}
@@ -269,6 +273,34 @@ Specify the bank account for payment. This command must be present, otherwise ``
 \end{lstlisting}
 
 
+\subsection{{\textbackslash}setsummary} \label{par:setsummary}
+Specify a summary to description of the invoice. This command is optional, and the field is left out if not set. Takes one argument: the message to use as the summary text. Example:
+\begin{lstlisting}
+\setsummary{This is a short summary of the invoice.}
+\end{lstlisting}
+
+
+\subsection{{\textbackslash}setcurrancy} \label{par:setcurrancy}
+Specify a currency to use in all price fields of the invoice. This command is optional, the default currency is ``USD''. Takes one argument: the name of the tax use. Example:
+\begin{lstlisting}
+\setcurrancy{CAD}
+\end{lstlisting}
+
+
+\subsection{{\textbackslash}setvattext} \label{par:setvattext}
+Specify custom text for the VAT labels. This command is optional, the default text is ``VAT''. Takes one argument: the currency code to use. Example:
+\begin{lstlisting}
+\setvattext{HST}
+\end{lstlisting}
+
+
+\subsection{{\textbackslash}setaccounttext} \label{par:setaccounttext}
+Specify custom text for the account number labels, useful if not receiving payments through a bank transfer. This command is optional, the default text is ``Account number''. Takes one argument: the title of the field. Example:
+\begin{lstlisting}
+\setaccounttext{Payment via}
+\end{lstlisting}
+
+
 \subsection{{\textbackslash}makeinvoice} \label{par:makeinvoice}
 Creates the specified invoice. Must be called after all the specifications has been set. Takes no arguments. Example:
 \begin{lstlisting}
@@ -283,6 +315,8 @@ Following are two different invoices. First, we create the invoice specified in 
 \usepackage{simpleinvoice}
 
 \begin{document}
+
+\setvattext{Tax}
 
 \setinvoicetitle{My Invoice}
 \setinvoicenumber{42}
@@ -301,16 +335,17 @@ Following are two different invoices. First, we create the invoice specified in 
 \setinvoicedate{April 1, 2017}
 \setdeadline{21}     % extends deadline to April 22, 2017
 
-\additem{4 chairs}{100 USD}{0}{400 USD}
-\additem{1 table}{250 USD}{0}{250 USD}
+\additem{4 chairs}{100}{0}{400}
+\additem{1 table}{250}{0}{250}
 
-\setsubtotal{650 USD}
-\setvat{0 USD}
-\settotal{650 USD}
+\setsubtotal{650}
+\setvat{0}
+\settotal{650}
 \setaccountnumber{1234 56 78910}
 \makeinvoice
 
 \end{document}
+
 \end{lstlisting}
 Which yields the result on the next page:\newpage
 \includepdf{examples/english.pdf}
@@ -338,6 +373,7 @@ The \texttt{simpleinvoice} package behaves well with other styling options, such
 
 \begin{document}
 
+\setcurrancy{kr}
 \setname{Navn Navnesen}
 \setaddress{Langtvekkveien 13b \\ 0123 Oslo}{Langtvekkveien 13b / 0123 Oslo}
 \setaccountnumber{1234 56 78910}
@@ -351,13 +387,13 @@ The \texttt{simpleinvoice} package behaves well with other styling options, such
 
 \setinvoicenumber{38}
 
-\additem{Flere}{5 000.00 kr}{20}{6 000.00 kr}
-\additem{Ulike}{8 000.00 kr}{20}{9 600.00 kr}
-\additem{Ting}{10 000.00 kr}{20}{12 000.00 kr}
+\additem{Flere}{5 000.00}{20}{6 000.00}
+\additem{Ulike}{8 000.00}{20}{9 600.00}
+\additem{Ting}{10 000.00}{20}{12 000.00}
 
-\setsubtotal{23 000.00 kr}
-\setvat{4 600.00 kr}
-\settotal{27 600.00 kr}
+\setsubtotal{23 000.00}
+\setvat{4 600.00}
+\settotal{27 600.00}
 
 \makeinvoice
 
