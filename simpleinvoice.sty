@@ -5,7 +5,7 @@
 % Version 2023-01-14.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{simpleinvoice}[2017/11/03 package simpleinvoice]
+\ProvidesPackage{simpleinvoice}[2023/01/14 package simpleinvoice]
 
 % Fall back to english if option parsing fails
 \def \INV@lang {eng}
@@ -188,7 +188,7 @@
 	\renewcommand{\arraystretch}{1}
 	\begin{tabular}{r r}
 		\csname INV@text@subtotal@\INV@lang\endcsname: \hspace{10pt} & \INV@content@subtotal \\
-		\csname INV@text@vat@\INV@lang\endcsname: \hspace{10pt} & \INV@content@vat \\ 
+		\csname INV@text@vat@\INV@lang\endcsname: \hspace{10pt} & \INV@content@vat \\
 		{\Large \csname INV@text@total@\INV@lang\endcsname: \hspace{10pt}} & {\Large \INV@content@total}
 	\end{tabular}
 
