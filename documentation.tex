@@ -59,7 +59,7 @@
 	framexleftmargin=2.4em,
 	showstringspaces=false,
 	language=TeX,
-	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\additem,\setsubtotal,\setvat,\settotal,\setaccountnumber},
+	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\setdeadlinedate,\additem,\setsubtotal,\setvat,\settotal,\setdisclaimer,\setpayee,\setaccountnumber,\setrouting},
 	commentstyle=\color{source_brown}\ttfamily, 
 	keywordstyle=\color{source_blue}\ttfamily,
 	stringstyle=\color{source_orange},
@@ -114,11 +114,15 @@ Following are a list of all available commands, detailed description are availab
 	\item \nameref{par:setourref}
 	\item \nameref{par:setinvoicedate}
 	\item \nameref{par:setdeadline}
+	\item \nameref{par:setdeadlinedate}
 	\item \nameref{par:additem}
 	\item \nameref{par:setsubtotal}
 	\item \nameref{par:setvat}
 	\item \nameref{par:settotal}
+	\item \nameref{par:setdisclaimer}
+	\item \nameref{par:setpayee}
 	\item \nameref{par:setaccountnumber}
+	\item \nameref{par:setrouting}
 	\item \nameref{par:makeinvoice}
 \end{itemize}
 
@@ -232,6 +236,11 @@ Specify the deadline of the invoice. This command is optional, and the deadline 
 \setdeadline{21}     % extends deadline to April 22, 2017
 \end{lstlisting}
 
+\subsection{{\textbackslash}setdeadlinedate} \label{par:setdeadlinedate}
+Specify the deadline of the invoice precisely. This command is optional, and the deadline is set using \texttt{\textbackslash setdeadline} logic if the command is omitted. Overrides \texttt{\textbackslash setdeadline} when command is used. Takes one argument: the precise deadline date. Example:
+\begin{lstlisting}
+\setdeadlinedate{March 10, 2024}
+\end{lstlisting}
 
 \subsection{{\textbackslash}additem} \label{par:additem}
 Adds an item to the invoice. At least one instance of this command must be present. Otherwise, ``{\color{red}No items yet}'' is printed. Takes four arguments: item description, item price, VAT percentage, and total price (including VAT). Example:
@@ -261,13 +270,29 @@ Specify the total of all items after VAT is applied. This command must be presen
 \settotal{650 USD}
 \end{lstlisting}
 
+\subsection{{\textbackslash}setdisclaimer} \label{par:setdisclaimer}
+Changes the default warning text about late payments. This command is optional, and the warning text will be the default message if the command is omitted. Takes one agument: the warning text. Example:
+\begin{lstlisting}
+\setdisclaimer{Late payments may cause delays in shipment}
+\end{lstlisting}
+
+\subsection{{\textbackslash}setpayee} \label{par:setpayee}
+Specify whom the bank transfer should be made out to. This command is optional, and no payee line will appear in payment details if the command is omitted. Takes one argument: the person or company name. Example:
+\begin{lstlisting}
+\setpayee{McNameface LLC}
+\end{lstlisting}
 
 \subsection{{\textbackslash}setaccountnumber} \label{par:setaccountnumber}
-Specify the bank account for payment. This command must be present, otherwise ``{\color{red}Bank account}'' is written in place. Takes one argument: the bank account for payment. Example:
+Specify the bank account number for payment. This command is optional, and no account number line will appear in payment details if the command is omitted. Takes one argument: the bank account number for payment. Example:
 \begin{lstlisting}
 \setaccountnumber{1234 56 78910}
 \end{lstlisting}
 
+\subsection{{\textbackslash}setrouting} \label{par:setrouting}
+Specify the bank routing number for payment. This command is optional, and no routing number line will appear in payment details if the command is omitted. Takes one argument: the bank routing number for payment. Example:
+\begin{lstlisting}
+\setrouting{99888777}
+\end{lstlisting}
 
 \subsection{{\textbackslash}makeinvoice} \label{par:makeinvoice}
 Creates the specified invoice. Must be called after all the specifications has been set. Takes no arguments. Example:
