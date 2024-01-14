@@ -19,4 +19,7 @@ $ git clone https://github.com/mathialo/simpleinvoice.git
 $ cd simpleinvoice
 $ sudo ./install_linux.sh
 ```
-I have only tested this on linux-based systems, but it might work on OS X as well. 
+I have only tested this on linux-based systems, but it might work on OS X as well.
+
+### Contributors
+* Izaac Mammadov: [Website](https://izaac.mammadov.co.uk); [Email](mailto:izaac@mammadov.co.uk); [GitHub](https://github.com/IzaacMammadov)
