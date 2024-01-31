@@ -59,7 +59,7 @@
 	framexleftmargin=2.4em,
 	showstringspaces=false,
 	language=TeX,
-	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\additem,\setsubtotal,\setvat,\settotal,\setaccountnumber, \setsummary, \setcurrancy, \setvattext, \setaccounttext},
+	morekeywords={\documentclass,\begin,\end,\usepackage,\makeinvoice,\setinvoicetitle,\setinvoicenumber,\setreceivername,\setreceiveraddress,\setname,\setaddress,\setphonenumber,\setemail,\setyourref,\setourref,\setinvoicedate,\setdeadline,\additem,\setsubtotal,\setvat,\settotal,\setaccountnumber, \setsummary, \setcurrency, \setvattext, \setaccounttext},
 	commentstyle=\color{source_brown}\ttfamily,
 	keywordstyle=\color{source_blue}\ttfamily,
 	stringstyle=\color{source_orange},
@@ -97,7 +97,7 @@
 \chapter{Package overview}
 The \texttt{simpleinvoice} package lets you easily typeset professional-looking invoices, and makes sure that all the legally required information is on the invoice.
 
-The package respects the global language set in the document, or can be loaded with another language specified. The languages currently supported are English and Norwegian (bokmål).
+The package respects the global language set in the document, or can be loaded with another language specified. The languages currently supported are English, Norwegian (bokmål), French and German.
 
 
 Following are a list of all available commands, detailed description are available in \cref{sec:commanddetails}.
@@ -120,7 +120,7 @@ Following are a list of all available commands, detailed description are availab
 	\item \nameref{par:settotal}
 	\item \nameref{par:setaccountnumber}
 	\item \nameref{par:setsummary}
-	\item \nameref{par:setcurrancy}
+	\item \nameref{par:setcurrency}
 	\item \nameref{par:setvattext}
 	\item \nameref{par:setaccounttext}
 	\item \nameref{par:makeinvoice}
@@ -284,15 +284,15 @@ Specify a summary to description of the invoice. This command is optional, and t
 \end{lstlisting}
 
 
-\subsection{{\textbackslash}setcurrancy} \label{par:setcurrancy}
-Specify a currency to use in all price fields of the invoice. This command is optional, the default currency is ``USD''. Takes one argument: the name of the tax use. Example:
+\subsection{{\textbackslash}setcurrency} \label{par:setcurrency}
+Specify a currency to use in all price fields of the invoice. This command is optional, the default currency is no currency. Takes one argument: the currency code to use. Example:
 \begin{lstlisting}
-\setcurrancy{CAD}
+\setcurrency{CAD}
 \end{lstlisting}
 
 
 \subsection{{\textbackslash}setvattext} \label{par:setvattext}
-Specify custom text for the VAT labels. This command is optional, the default text is ``VAT''. Takes one argument: the currency code to use. Example:
+Specify custom text for the VAT labels. This command is optional, the default text is ``VAT''. Takes one argument: the name of the tax use. Example:
 \begin{lstlisting}
 \setvattext{HST}
 \end{lstlisting}
@@ -321,6 +321,7 @@ Following are two different invoices. First, we create the invoice specified in 
 \begin{document}
 
 \setvattext{Tax}
+\setcurrency{USD}
 
 \setinvoicetitle{My Invoice}
 \setinvoicenumber{42}
@@ -377,7 +378,8 @@ The \texttt{simpleinvoice} package behaves well with other styling options, such
 
 \begin{document}
 
-\setcurrancy{kr}
+\setcurrency{kr}
+
 \setname{Navn Navnesen}
 \setaddress{Langtvekkveien 13b \\ 0123 Oslo}{Langtvekkveien 13b / 0123 Oslo}
 \setaccountnumber{1234 56 78910}
