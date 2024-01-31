@@ -14,9 +14,13 @@
 \DeclareOption{english}{\def \INV@lang   {eng}}
 \DeclareOption{UKenglish}{\def \INV@lang {eng}}
 \DeclareOption{USenglish}{\def \INV@lang {eng}}
+\DeclareOption{french}{\def \INV@lang {fr}}
+\DeclareOption{francais}{\def \INV@lang {fr}}
 \DeclareOption{norsk}{\def \INV@lang     {nobm}}
 \DeclareOption{norwegian}{\def \INV@lang {nobm}}
 \DeclareOption{bokmaal}{\def \INV@lang {nobm}}
+\DeclareOption{german}{\def \INV@lang {deu}}
+\DeclareOption{deutsch}{\def \INV@lang {deu}}
 
 \ProcessOptions
 
@@ -38,6 +42,23 @@
 \def \INV@text@accountnum@eng {Account number}
 \def \INV@text@warning@eng {By paying after deadline, additional interest and fees may apply.}
 
+\def \INV@text@invoice@fr {Facture}
+\def \INV@text@ourref@fr {Notre référent}
+\def \INV@text@yourref@fr {Votre référent}
+\def \INV@text@invnum@fr {Numéro de facture}
+\def \INV@text@invdate@fr {Date de facturation}
+\def \INV@text@deadline@fr {Date limite de paiement}
+\def \INV@text@description@fr {Description}
+\def \INV@text@itemprice@fr {Prix unitaire}
+\def \INV@text@vat@fr {TVA}
+\def \INV@text@itemtotal@fr {Montant}
+\def \INV@text@subtotal@fr {Sous-total}
+\def \INV@text@total@fr {Total}
+\def \INV@text@paymentinfo@fr {Informations de paiement}
+\def \INV@text@totallong@fr {Total}
+\def \INV@text@accountnum@fr {Numéro de compte}
+\def \INV@text@warning@fr {En payant après la date limite, des intérêts et des frais peuvent être appliqués.}
+
 \def \INV@text@invoice@nobm {Faktura}
 \def \INV@text@ourref@nobm {Vår ref}
 \def \INV@text@yourref@nobm {Deres ref}
@@ -55,8 +76,25 @@
 \def \INV@text@accountnum@nobm {Kontonummer}
 \def \INV@text@warning@nobm {Ved betaling etter forfall kan det påløpe renter og gebyr etter statens satser. Ved innsigelse vil kravet kunne bli sendt til forliksrådet, jf. tvistelovens § 5-2.}
 
-%% Set the values
+\def \INV@text@invoice@deu {Rechnung}
+\def \INV@text@ourref@deu {Unser Zeichen}
+\def \INV@text@yourref@deu {Ihr Zeichen}
+\def \INV@text@invnum@deu {Rechnungsnummer}
+\def \INV@text@invdate@deu {Rechnungsdatum}
+\def \INV@text@deadline@deu {Fälligkeitsdatum}
+\def \INV@text@description@deu {Beschreibung}
+\def \INV@text@itemprice@deu {Einzelpreis}
+\def \INV@text@vat@deu {Mwst.}
+\def \INV@text@itemtotal@deu {Gesamt}
+\def \INV@text@subtotal@deu {Netto}
+\def \INV@text@total@deu {Brutto}
+\def \INV@text@paymentinfo@deu {Zahlungsinformationen}
+\def \INV@text@totallong@deu {Rechnungsbetrag}
+\def \INV@text@accountnum@deu {IBAN}
+\def \INV@text@warning@deu {Bei Zahlungsverzug können weitere Kosten entstehen.}
 
+
+%% Set the values
 \def \INV@text@invoice {\csname INV@text@invoice@\INV@lang \endcsname}
 \def \INV@text@ourref {\csname INV@text@ourref@\INV@lang \endcsname}
 \def \INV@text@yourref {\csname INV@text@yourref@\INV@lang \endcsname}
@@ -74,6 +112,7 @@
 \def \INV@text@accountnum {\csname INV@text@accountnum@\INV@lang \endcsname}
 \def \INV@text@warning {\csname INV@text@warning@\INV@lang \endcsname}
 \def \INV@text@currancy {\ USD}
+
 
 % Import neccesary libraries
 \RequirePackage{advdate}
