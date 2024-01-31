@@ -15,9 +15,11 @@
 \pagestyle{empty}                     % Remove page number
 
 % Invoice
-\usepackage{simpleinvoice}
+\usepackage{../simpleinvoice}
 
 \begin{document}
+
+\setcurrancy{kr}
 
 \setname{Navn Navnesen}
 \setaddress{Langtvekkveien 13b \\ 0123 Oslo}{Langtvekkveien 13b / 0123 Oslo}
@@ -32,13 +34,13 @@
 
 \setinvoicenumber{38}
 
-\additem{Flere}{5 000.00 kr}{20}{6 000.00 kr}
-\additem{Ulike}{8 000.00 kr}{20}{9 600.00 kr}
-\additem{Ting}{10 000.00 kr}{20}{12 000.00 kr}
+\additem{Flere}{5 000.00}{20}{6 000.00}
+\additem{Ulike}{8 000.00}{20}{9 600.00}
+\additem{Ting}{10 000.00}{20}{12 000.00}
 
-\setsubtotal{23 000.00 kr}
-\setvat{4 600.00 kr}
-\settotal{27 600.00 kr}
+\setsubtotal{23 000.00}
+\setvat{4 600.00}
+\settotal{27 600.00}
 
 \makeinvoice
 

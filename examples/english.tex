@@ -1,8 +1,10 @@
 \documentclass[english]{article}
 
-\usepackage{simpleinvoice}
+\usepackage{../simpleinvoice}
 
 \begin{document}
+
+\setvattext{Tax}
 
 \setinvoicetitle{My Invoice}
 \setinvoicenumber{42}
@@ -21,12 +23,12 @@
 \setinvoicedate{April 1, 2017}
 \setdeadline{21}     % extends deadline to April 22, 2017
 
-\additem{4 chairs}{100 USD}{0}{400 USD}
-\additem{1 table}{250 USD}{0}{250 USD}
+\additem{4 chairs}{100}{0}{400}
+\additem{1 table}{250}{0}{250}
 
-\setsubtotal{650 USD}
-\setvat{0 USD}
-\settotal{650 USD}
+\setsubtotal{650}
+\setvat{0}
+\settotal{650}
 \setaccountnumber{1234 56 78910}
 \makeinvoice
 
