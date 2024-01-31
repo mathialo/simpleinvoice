@@ -17,6 +17,8 @@
 \DeclareOption{norsk}{\def \INV@lang     {nobm}}
 \DeclareOption{norwegian}{\def \INV@lang {nobm}}
 \DeclareOption{bokmaal}{\def \INV@lang {nobm}}
+\DeclareOption{german}{\def \INV@lang {deu}}
+\DeclareOption{deutsch}{\def \INV@lang {deu}}
 
 \ProcessOptions
 
@@ -54,6 +56,23 @@
 \def \INV@text@totallong@nobm {Sum å betale}
 \def \INV@text@accountnum@nobm {Kontonummer}
 \def \INV@text@warning@nobm {Ved betaling etter forfall kan det påløpe renter og gebyr etter statens satser. Ved innsigelse vil kravet kunne bli sendt til forliksrådet, jf. tvistelovens § 5-2.}
+
+\def \INV@text@invoice@deu {Rechnung}
+\def \INV@text@ourref@deu {Unser Zeichen}
+\def \INV@text@yourref@deu {Ihr Zeichen}
+\def \INV@text@invnum@deu {Rechnungsnummer}
+\def \INV@text@invdate@deu {Rechnungsdatum}
+\def \INV@text@deadline@deu {Fälligkeitsdatum}
+\def \INV@text@description@deu {Beschreibung}
+\def \INV@text@itemprice@deu {Einzelpreis}
+\def \INV@text@vat@deu {Mwst.}
+\def \INV@text@itemtotal@deu {Gesamt}
+\def \INV@text@subtotal@deu {Netto}
+\def \INV@text@total@deu {Brutto}
+\def \INV@text@paymentinfo@deu {Zahlungsinformationen}
+\def \INV@text@totallong@deu {Rechnungsbetrag}
+\def \INV@text@accountnum@deu {IBAN}
+\def \INV@text@warning@deu {Bei Zahlungsverzug können weitere Kosten entstehen.}
 
 % Import neccesary libraries
 \RequirePackage{advdate}
